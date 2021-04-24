@@ -21,7 +21,6 @@ namespace AntiCheat.Presentation.Controllers
         }
         public async Task<IActionResult> Index()
         {
-
             try
             {
                 var tickets = await _ticketSaleService.GetTicketsSalesAsync();

@@ -8,7 +8,6 @@ namespace AntiCheat.DataAccess.Models
 {
     public class User
     {
-
         public int Id { get; set; }
 
         public string Name { get; set; }
@@ -20,7 +19,6 @@ namespace AntiCheat.DataAccess.Models
         public string Password { get; set; }
 
         public string ConfirmPassword { get; set; }
-
 
         public List<TicketSale> TicketSales { get; set; }
 

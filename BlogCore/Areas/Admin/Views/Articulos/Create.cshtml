@@ -1,0 +1,133 @@
+﻿@model BlogCore.Models.ViewModels.ArticuloVM
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+<h3 class="text-center"> Crear una nueva artículo</h3>
+<div class="container">
+    <form method="post" asp-action="Create" enctype="multipart/form-data">
+        <div class="row px-2 mx-2 border">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="col-10 offset-1 mt-4">
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Articulo.Nombre"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Articulo.Nombre" class="form-control" />
+                        <span asp-validation-for="Articulo.Nombre" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Articulo.Precio"></label>
+                    </div>
+                    <div class="col-8">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">RD$</span>
+                            </div>
+                            <input type="number" class="form-control" asp-for="Articulo.Precio" aria-label="Precio">
+                            <div class="input-group-append">
+                                <span class="input-group-text">.00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Articulo.Sexo"></label>
+                    </div>
+                    <div class="col-8">
+                        <select class="custom-select form-control" asp-for="Articulo.Sexo" id="inputGroupSelect01">
+                            <option selected>Indefinido...</option>
+                            <option value="Hombre">Hombre</option>
+                            <option value="Mujer">Mujer</option>
+                            <option value="Niña">Niña</option>
+                            <option value="Niño">Niño</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Articulo.Descripcion"></label>
+                    </div>
+                    <div class="col-8">
+                        <textarea asp-for="Articulo.Descripcion" class="form-control" style="height:300px;"></textarea>
+                        <span asp-validation-for="Articulo.Descripcion" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Articulo.CategoriaId"></label>
+                    </div>
+                    <div class="col-8">
+                        @Html.DropDownListFor(m => m.Articulo.CategoriaId, Model.ListaCategorias,
+                         "-Porfavor seleccione una categoría-", new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Articulo.UrlImagen"></label>
+                    </div>
+                    <div class="col-8">
+                        <input type="file" name="archivos" id="subidaArchivo" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-8 offset-4">
+                        <partial name="_VistaCrearVolver" />
+                    </div>
+                </div>
+                <div class="col-md-6 pt-3 pb-3 " style="width: 250px;height:250px; border-radius: 5px; border: 1px solid #bbb9b9;">
+                    <div id="preview" class="d-inline"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts{
+    <script src="https://cdn.tiny.cloud/1/iuw6d6d2g6aknsd5mqokrs44sv9h10b4v9i2cl7w2db8cyjw/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'lists',
+            menubar: 'file edit format'
+        })
+    </script>
+
+
+    <script>
+        document.getElementById("subidaArchivo").onchange = function imagenSeleccionada(e) {
+            // Creamos el objeto de la clase FileReader
+            let reader = new FileReader();
+
+            // Leemos el archivo subido y se lo pasamos a nuestro fileReader
+            reader.readAsDataURL(e.target.files[0]);
+
+            // Le decimos que cuando este listo ejecute el código interno
+            reader.onload = function () {
+                let preview = document.getElementById('preview'),
+                    image = document.createElement('img');
+                image.setAttribute("width", "100%");
+                image.setAttribute("height", "100%");
+                image.src = reader.result;
+
+                preview.innerHTML = '';
+                preview.append(image);
+            };
+        }
+    </script>
+
+}
+

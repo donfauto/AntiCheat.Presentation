@@ -1,0 +1,52 @@
+﻿@model IEnumerable<ApplicationUser>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<div class=" container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2 class="text-primary ">Lista de usuarios</h2>
+            <h6 class="text-muted">Define quienes tienen acceso a la página.</h6>
+        </div>
+        <div class="col-md-6 text-md-right">
+            <a asp-area="Identity" asp-page="/Account/Register" class="btn btn-primary ">
+                <i class="fas fa-plus"></i> &nbsp; Registrar un nuevo usuario
+            </a>
+        </div>
+    </div>
+
+    <br />
+
+    @if (Model.Count() > 0)
+    {
+        <div class="">
+            <table id="tblUsuarios" class="table-responsive table table-hover border" style="width:100%;">
+                <thead>
+                    <tr class="table-dark">
+                        <th>Nombre</th>
+                        <th>Email</th>
+                        <th>Teléfono</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+
+            </table>
+        </div>
+    }
+    else
+    {
+        <p>No existen usuarios...</p>
+    }
+
+</div>
+@section Scripts{
+    <script src="~/js/usuario.js"></script>
+}
+
+
+
+
+

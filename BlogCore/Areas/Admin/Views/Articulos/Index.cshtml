@@ -1,0 +1,69 @@
+﻿@model BlogCore.Models.Articulo
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2 class="text-primary">Lista de artículos</h2>
+            <h6 class="text-muted">Administra los artículos que se usarán en toda la aplicación.</h6>
+        </div>
+        <div class="col-md-6 text-md-right">
+            <a asp-action="Create" class="btn btn-primary">
+                <i class="fas fa-plus"></i> &nbsp;Nuevo Artículo
+            </a>
+        </div>
+    </div>
+    <br />
+    <table id="tblArticulos" class=" table-responsive table table-hover border" data-show-columns="true" style="width:100%;">
+        <thead class="">
+            <tr class="table-dark">
+                <th class="text-center">Imagen</th>
+                <th class="text-center">Id</th>
+                <th class="text-center">Nombre</th>
+                <th class="text-center">Precio</th>
+                <th class="text-center">Sexo</th>
+                <th class="text-center">Categoria</th>
+                <th class="text-center">Fecha</th>
+                <th class="text-center">Acciones</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+
+<!-- Modal -->
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog mt-0">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Facturas</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Este artículo aún no se ha vendido.</p>
+                <div class="text-center"><partial name="Iconos/_IconoNena" /></div>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+@section Scripts{
+    <script src="~/js/articulo.js"></script>
+}
+
+<style>
+    th {
+        position: sticky;
+        top: 0; /* Don't forget this, required for the stickiness */
+    }
+</style>

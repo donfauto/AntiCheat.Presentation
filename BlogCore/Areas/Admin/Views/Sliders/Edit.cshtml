@@ -1,0 +1,74 @@
+﻿@model BlogCore.Models.Slider
+@{
+    ViewData["Title"] = "Editar slider";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+<h3 class="text-center">Editar slider</h3>
+<div class="container">
+    <form asp-action="Edit" method="post" enctype="multipart/form-data">
+        <input type="hidden" asp-for="Id" />
+        <div class="d-flex flex-row-reverse bd-highlight "><a asp-action="Index" class=" btn btn-success ">Volver a lista</a></div>
+        <br />
+
+        <div class="row px-2 mx-2 border">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="col-md-6 mt-4">
+                <div class="form-group row">
+                    <div class="col-md-4">
+                        <label asp-for="Nombre"></label><span>:</span>
+                    </div>
+                    <div class="col-md-8">
+                        <input asp-for="Nombre" class="form-control" />
+                        <span asp-validation-for="Nombre" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-4">
+                        <label asp-for="Estado"></label><span>:</span>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="checkbox" asp-for="Estado" data-on="Activado" data-off="Desactivado" data-toggle="toggle" data-width="40%" data-height="25%">
+                        <span asp-validation-for="Estado" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-4">
+                        <label asp-for="UrlImagen"></label><span>:</span>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="file" name="archivos" id="subidaArchivo" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-8 offset-md-4">
+                        <div class="">
+                            <div class="">
+                                <button type="submit" class=" btn btn-dark form-control" style="height:100%" asp-route-id="@Model.Id">Actualizar</button>
+                                &nbsp;
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-6 pt-3 pb-3">
+                <img src="@Model.UrlImagen" style="width: 100%; border-radius: 5px; border: 1px solid #bbb9b9;" />
+            </div>
+        </div>
+
+    </form>
+</div>
+<script>
+    $(function toggle() {
+        $('#toggle-two').bootstrapToggle({
+            on: 'Enabled',
+            off: 'Disabled'
+        });
+    })
+</script>

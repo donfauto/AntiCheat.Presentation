@@ -1,0 +1,87 @@
+﻿@model BlogCore.Models.Slider
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+<h3 class="text-center"> Crear un nuevo Slider</h3>
+<form method="post" asp-action="Create" enctype="multipart/form-data">
+    <div class="row px-2 mx-2 border">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="col-md-6 mt-4">
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Nombre"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Nombre" class="form-control" />
+                    <span asp-validation-for="Nombre" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Estado"></label>
+                </div>
+                <div class="col-8">
+                    <input type="checkbox" asp-for="Estado" data-on="Activado" data-off="Desactivado" data-toggle="toggle" data-width="40%" data-height="25%">
+                    <span asp-validation-for="Estado" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="UrlImagen"></label>
+                </div>
+                <div class="col-8">
+                    <input type="file" name="archivos" id="subidaArchivo" class="form-control" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-8 offset-4">
+                    <partial name="_VistaCrearVolver" />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 pt-3 pb-3" >
+            <div  style="width: 100%; border-radius: 5px; border: 1px solid #bbb9b9;">
+                <div id="preview"  class="d-inline"></div>
+            </div>
+            
+        </div>
+    </div>
+</form>
+
+
+<script>
+    document.getElementById("subidaArchivo").onchange = function imagenSeleccionada(e) {
+        // Creamos el objeto de la clase FileReader
+        let reader = new FileReader();
+
+        // Leemos el archivo subido y se lo pasamos a nuestro fileReader
+        reader.readAsDataURL(e.target.files[0]);
+
+        // Le decimos que cuando este listo ejecute el código interno
+        reader.onload = function () {
+            let preview = document.getElementById('preview'),
+                image = document.createElement('img');
+            image.setAttribute("width", "100%");
+            image.setAttribute("height", "100%");
+            image.src = reader.result;
+
+            preview.innerHTML = '';
+            preview.append(image);
+        };
+    };
+
+    $(function toggle() {
+        $('#toggle-two').bootstrapToggle({
+            on: 'Enabled',
+            off: 'Disabled'
+        });
+    })
+</script>

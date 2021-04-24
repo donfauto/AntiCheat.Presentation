@@ -1,0 +1,58 @@
+﻿@model AntiCheat.BusinessLogic.Models.SaleViewModel
+@{
+    ViewData["Title"] = "SaveTicket";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>SaveTicket</h1>
+
+
+<div class="container">
+
+    <div class="bg-white shadow border col-md-12">
+        <form asp-controller="Ticket" asp-action="SaveTicket" method="post" class="p-2">
+
+            <div class="form-group">
+                <input type="text" asp-for="Buyer.BuyerName" placeholder="Cliente" class="form-control">
+            </div>
+            <div class="form-group">
+                <input type="text" asp-for="Buyer.BuyerLastName" placeholder="Apellido" class="form-control">
+            </div>
+            <div class="form-group">
+                <input type="text" asp-for="Buyer.BuyerIdentification" placeholder="cedula" class="form-control">
+            </div>
+            <div class="form-group">
+                <input type="text" asp-for="Buyer.Phone" placeholder="telefono" class="form-control">
+            </div>
+            <div class="form-group">
+                <input type="text" asp-for="Buyer.AcountNumber" placeholder="cuenta" class="form-control">
+            </div>
+            <div class="form-group">
+                <input type="text" asp-for="TicketSale.Country" placeholder="pais " class="form-control">
+            </div>
+            <div class="form-group">
+                <input type="text" asp-for="TicketSale.NumTransaction" placeholder="numero transacion" class="form-control">
+            </div>
+            <div class="form-group">
+                <input type="text" asp-for="Ticket.NumTicked" placeholder="numero ticket" class="form-control">
+            </div>
+
+            <input type="text" placeholder="Nombre del usuario" class="form-control">
+
+
+            <input type="submit" class="btn btn-danger col-md-2 p-2 m-3">
+
+            <p>@ViewBag.Error</p>
+            @if (!string.IsNullOrEmpty(ViewBag.Exist))
+            {
+                <p class="text-danger">@ViewBag.Exist</p>
+            }
+
+
+            @if (!string.IsNullOrEmpty(ViewBag.Sucess))
+            {
+                <p class="text-success">@ViewBag.Sucess</p>
+            }
+        </form>
+    </div>
+</div>

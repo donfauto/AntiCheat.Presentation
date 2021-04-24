@@ -50,7 +50,7 @@ namespace AntiCheat.Presentation.Controllers
             {
                 if (await _ticketSaleService.CheckIfTRansactionExistAsync(saleViewModel.TicketSale.NumTransaction))
                 {
-                    TempData["Exist"] = "Errosito";
+                    TempData["Exist"] = "No se pudo agregar";
                 }
                 else
                 {

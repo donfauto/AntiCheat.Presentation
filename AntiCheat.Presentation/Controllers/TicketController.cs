@@ -59,9 +59,6 @@ namespace AntiCheat.Presentation.Controllers
 
 
 
-
-
-
         [HttpPost]
         public async Task<IActionResult> SaveTicket(SaleViewModel saleViewModel)
         {

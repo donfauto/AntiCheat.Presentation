@@ -34,8 +34,10 @@ namespace AntiCheat.Presentation
             services.AddDbContext<AntiCheatDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Connection")));
             services.AddTransient<ITicketRepository, TicketRepository>();
             services.AddTransient<IBuyerRepository, BuyerRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<ITicketSaleRepository, TicketSaleRepository>();
             services.AddTransient<ITicketService, TicketService>();
+            services.AddTransient<IUserService, UserService>();
 
 
             services.AddTransient<ITicketSaleService, TicketSaleService>();

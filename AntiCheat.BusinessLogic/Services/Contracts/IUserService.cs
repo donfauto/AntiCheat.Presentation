@@ -6,15 +6,13 @@ using AntiCheat.DataAccess.Models;
 
 namespace AntiCheat.BusinessLogic.Services.Contracts
 {
-    interface IUserService
+    public interface IUserService
     {
         Task<List<User>> GetUsersAsync();
 
+        Task<User> GetUserByIdAsync(int id);
+
         Task<int> SaveUserAsync(User user);
-
-        Task<Ticket> GetUserByIdAsync(int id);
-
-        Task<int> SaveUserAsync(Ticket ticket);
 
         Task<int> DeleteUserAsync(int id);
     }

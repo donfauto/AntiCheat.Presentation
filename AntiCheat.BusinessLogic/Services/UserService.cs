@@ -8,33 +8,46 @@ using System.Threading.Tasks;
 
 namespace AntiCheat.BusinessLogic.Services
 {
-    class UserService : IUserService
+    public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
+        public UserService(IUserRepository userRepository)
+        {
+            _userRepository = userRepository;
+        }
 
         public Task<int> DeleteUserAsync(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Ticket> GetUserByIdAsync(int id)
+        public Task<User> GetUserByIdAsync(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<User>> GetUsersAsync()
+        public async Task<List<User>> GetUsersAsync()
         {
-            throw new NotImplementedException();
+            try
+            {
+                return await _userRepository.GetUsersAsync();
+            }
+            catch
+            {
+                throw;
+            }
         }
 
-        public Task<int> SaveUserAsync(User user)
+        public async Task<int> SaveUserAsync(User user)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<int> SaveUserAsync(Ticket ticket)
-        {
-            throw new NotImplementedException();
+            try
+            {
+                return await _userRepository.SaveUserAsync(user);
+            }
+            catch
+            {
+                throw;
+            }
         }
     }
 }

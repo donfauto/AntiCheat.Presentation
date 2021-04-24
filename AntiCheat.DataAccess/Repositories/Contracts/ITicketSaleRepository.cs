@@ -12,5 +12,8 @@ namespace AntiCheat.DataAccess.Repositories.Contracts
         Task<int> SaveTicketSaleAsync(TicketSale ticketResponse, Buyer buyer, Ticket ticket);
 
         Task<bool> CheckIfTRansactionExistAsync(string numTransatransaction);
+        Task<List<TicketResponse>> GetTicketsSalesAsync();
+
+        Task<List<TicketResponse>> GetTicketsSalesByIdAsync(int id);
     }
 }

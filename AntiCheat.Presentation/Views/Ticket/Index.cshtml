@@ -1,0 +1,27 @@
+﻿@model List<AntiCheat.DTO.Response.TicketResponse>
+@{ ViewData["Title"] = "Index";
+                Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+
+
+<div class="container">
+
+    <div class="shadow bg-white col-md-12">
+
+        @foreach (var item in Model)
+        {
+<div class="border shadow p-3 m-2">
+
+    <h3 class="">Ticket Vendido: <span class="text-danger">@item.NumTicked</span></h3>
+    <hr>
+    <h5>Nombre del comprador: <span class="text-muted">@item.BuyerName</span></h5>
+    <h5>Apellido del comprador: <span class="text-muted">@item.BuyerLastName</span></h5>
+    <h5>Cedula del compador: <span class="text-muted">@item.BuyerIdentification</span></h5>
+    <h5>Numero de transaccion: <span class="text-muted">@item.NumTransaction</span></h5>
+    <h5>Pais de la transaccion: <span class="text-muted">@item.CountryTransaction</span></h5>
+    <h5>Numero del ticket vendido :<span class="text-muted">@item.NumTicked</span></h5>
+    <h5>Usuario vendedor: <span class="text-muted">@item.UserName</span></h5>
+    <h5>poner fecha</h5>
+</div>}
+    </div>
+</div>

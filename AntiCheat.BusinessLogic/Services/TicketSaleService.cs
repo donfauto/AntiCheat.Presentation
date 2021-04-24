@@ -31,6 +31,30 @@ namespace AntiCheat.BusinessLogic.Services
             }
         }
 
+        public async Task<List<TicketResponse>> GetTicketsSalesAsync()
+        {
+            try
+            {
+                return await _ticketSaleRepository.GetTicketsSalesAsync();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public async Task<List<TicketResponse>> GetTicketsSalesByIdAsync(int id)
+        {
+            try
+            {
+                return await _ticketSaleRepository.GetTicketsSalesByIdAsync(id);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
         public async Task<int> SaveTicketSaleAsync(SaleViewModel saleViewModel)
         {
             try

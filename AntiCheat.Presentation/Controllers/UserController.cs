@@ -45,7 +45,7 @@ namespace AntiCheat.Presentation.Controllers
         {
             try
             {
-                if (user != null)
+                if (user == null)
                 {
                     return View();
                 }

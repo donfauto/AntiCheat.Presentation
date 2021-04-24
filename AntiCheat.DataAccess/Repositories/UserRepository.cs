@@ -49,8 +49,7 @@ namespace AntiCheat.DataAccess.Repositories
 
         public async Task<int> SaveUserAsync(User user)
         {
-            if (user.Id < 0)
-                await _dbContext.AddAsync(user);
+            await _dbContext.Users.AddAsync(user);
             return await _dbContext.SaveChangesAsync();
         }
 

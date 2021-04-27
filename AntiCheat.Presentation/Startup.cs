@@ -15,6 +15,7 @@ using AntiCheat.DataAccess.Repositories.Contracts;
 using AntiCheat.DataAccess.Repositories;
 using AntiCheat.BusinessLogic.Services.Contracts;
 using AntiCheat.BusinessLogic.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace AntiCheat.Presentation
 {
@@ -35,11 +36,18 @@ namespace AntiCheat.Presentation
             services.AddTransient<ITicketRepository, TicketRepository>();
             services.AddTransient<IBuyerRepository, BuyerRepository>();
             services.AddTransient<ITicketSaleRepository, TicketSaleRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<ITicketService, TicketService>();
-
-
             services.AddTransient<ITicketSaleService, TicketSaleService>();
             services.AddTransient<IBuyerService, BuyerService>();
+            services.AddTransient<IUserService, UserService>();
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            }).AddCookie(options => { options.LoginPath = "/User/Login"; });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,13 +68,16 @@ namespace AntiCheat.Presentation
 
             app.UseRouting();
 
+            app.UseAuthentication();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Ticket}/{action=SaveTicket}/{id?}");
+                    pattern: "{controller=User}/{action=Login" +
+                    "}/{id?}");
             });
         }
     }

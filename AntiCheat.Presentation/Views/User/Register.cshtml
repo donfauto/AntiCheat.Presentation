@@ -1,0 +1,45 @@
+﻿@model AntiCheat.DataAccess.Models.User
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (!string.IsNullOrEmpty(ViewBag.Success))
+{
+    <p class="text-success"> @ViewBag.Success </p>
+
+}
+
+<div class="container mt-5 pt-5">
+
+    <div class="col-md-12 shadow bg-white p-2">
+
+
+        <form asp-controller="User" asp-action="Register" class="p-2" method="post">
+            <h3>Registro</h3>
+            <hr />
+            <label>Nombre</label>
+            <input type="text" asp-for="Name" name="name" value="" class="form-control" />
+            <label>Apellido</label>
+            <input type="text" asp-for="LastName" value="" class="form-control" />
+            <label>Usuario</label>
+            <input type="text" asp-for="UserName" value="" class="form-control" />
+      
+            <label>Contraseña</label>
+            <input type="password" asp-for="Password" value="" class="form-control " />
+            <label>Confirmar Contraseña </label>
+            <input type="password" asp-for="ConfirmPassword" value="" class="form-control mb-2" />
+            @if (!string.IsNullOrEmpty(ViewBag.Error))
+            {
+                <p class="text-danger"> @ViewBag.Error </p>
+
+            }
+
+
+            <input type="submit" class="btn btn-dark" value="Guardar" />
+            <p class="mt-2">  <a asp-controller="User" asp-action="Login">Ingresar</a></p>
+        </form>
+
+    </div>
+
+</div>
+

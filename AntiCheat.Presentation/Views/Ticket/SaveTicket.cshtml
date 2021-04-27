@@ -1,4 +1,5 @@
 ﻿@model AntiCheat.BusinessLogic.Models.SaleViewModel
+@using AntiCheat.Helper;
 @{
     ViewData["Title"] = "SaveTicket";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -37,7 +38,12 @@
                 <input type="text" asp-for="Ticket.NumTicked" placeholder="numero ticket" class="form-control">
             </div>
 
-            <input type="text" placeholder="Nombre del usuario" class="form-control">
+            @if (User.Identity.IsAuthenticated)
+            {
+
+                <input type="hidden" value="@SeccionHelper.GetUserId(User)" asp-for="User.Id" class="form-control">
+
+            }
 
 
             <input type="submit" class="btn btn-danger col-md-2 p-2 m-3">

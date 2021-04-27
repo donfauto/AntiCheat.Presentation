@@ -13,6 +13,7 @@ namespace AntiCheat.DTO.Response
 
         public int BuyerId { get; set; }
         public string BuyerName { get; set; }
+        public string BuyerLastName { get; set; }
         public int BuyerIdentification { get; set; }
         public int UserId { get; set; }
         public string UserName { get; set; }

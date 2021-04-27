@@ -2,6 +2,7 @@
 using AntiCheat.BusinessLogic.Services.Contracts;
 using AntiCheat.DataAccess.Models;
 using AntiCheat.DTO.Response;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace AntiCheat.Presentation.Controllers
 {
+    [Authorize]
     public class TicketController : Controller
     {
         private readonly ITicketService _ticketService;
@@ -24,9 +26,25 @@ namespace AntiCheat.Presentation.Controllers
 
             try
             {
-                var tickets = await _ticketService.GetTicketsAsync();
+                var tickets = await _ticketSaleService.GetTicketsSalesAsync();
 
                 return View(tickets);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = ex.Message;
+                return View();
+            }
+        }
+
+
+        [Route("Ticket/ViewTicketsUser/{id:int}")]
+        public async Task<IActionResult> ViewTicketsUser(int id)
+        {
+            try
+            {
+                var ticket = await _ticketSaleService.GetTicketsSalesByIdAsync(id);
+                return View(ticket);
             }
             catch (Exception ex)
             {
@@ -38,25 +56,29 @@ namespace AntiCheat.Presentation.Controllers
         public IActionResult SaveTicket()
         {
             ViewBag.Sucess = TempData["Sucess"];
-            ViewBag.Exist = TempData["Exist"];
+            ViewBag.Danger = TempData["Danger"];
             return View();
         }
 
 
+
+
+
+
         [HttpPost]
         public async Task<IActionResult> SaveTicket(SaleViewModel saleViewModel)
-        {  
+        {
             try
             {
-                if (await _ticketSaleService.CheckIfTRansactionExistAsync(saleViewModel.TicketSale.NumTransaction))
+                if (!await _ticketSaleService.CheckIfTRansactionExistAsync(saleViewModel.TicketSale.NumTransaction))
                 {
-                    TempData["Exist"] = "No se pudo agregar";
+                    TempData["Danger"] = "Error al agregar!";
                 }
                 else
                 {
                     var savedTicket = await _ticketSaleService.SaveTicketSaleAsync(saleViewModel);
                     TempData["Sucess"] = "Agregado correctamente!";
-                    
+
                 }
                 return RedirectToAction("SaveTicket");
             }

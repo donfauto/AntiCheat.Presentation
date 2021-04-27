@@ -11,5 +11,6 @@ namespace AntiCheat.BusinessLogic.Models
         public Ticket Ticket { get; set; }
         public Buyer Buyer { get; set; }
         public TicketSale TicketSale { get; set; }
+        public User User { get; set; }
     }
 }

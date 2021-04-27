@@ -12,5 +12,8 @@ namespace AntiCheat.BusinessLogic.Services.Contracts
     {
         Task<int> SaveTicketSaleAsync(SaleViewModel saleViewModel);
         Task <bool> CheckIfTRansactionExistAsync(string numTransatransaction);
+        Task<List<TicketResponse>> GetTicketsSalesAsync();
+
+        Task<List<TicketResponse>> GetTicketsSalesByIdAsync(int id);
     }
 }

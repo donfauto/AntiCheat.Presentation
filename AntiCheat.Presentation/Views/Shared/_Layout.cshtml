@@ -31,11 +31,16 @@
                             <a class="nav-link text-dark" asp-controller="Ticket" asp-action="Index">Tickets Vendidos</a>
                         </li>
                         <li class="nav-item">
+<<<<<<< HEAD
                             <a class="nav-link text-dark" asp-area="" asp-controller="Ticket" asp-action="ViewTicketsUser" asp-route-id="@SeccionHelper.GetUserId(User)">Tickets Vendidos por Usuario</a>
+=======
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Ticket" asp-action="ViewTicketsUser" asp-route-id="1">Tickets Vendidos por Usuario</a>
+>>>>>>> 4b5e1739a7dd3ca991b39b3d449dad7240699266
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Ticket" asp-action="SaveTicket">Vender Ticket</a>
                         </li>
+<<<<<<< HEAD
                         <ul class="navbar-nav">
                             @if (User.Identity.IsAuthenticated)
                             {
@@ -47,6 +52,11 @@
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 
                         <li><a class="dropdown-item" asp-controller="User" asp-action="Logout">   <i class="fas fa-sign-out-alt"></i> Cerrar seccion</a></li>
+=======
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index">Usuarios</a>
+                        </li>
+>>>>>>> 4b5e1739a7dd3ca991b39b3d449dad7240699266
 
                     </ul>
                 </div>}

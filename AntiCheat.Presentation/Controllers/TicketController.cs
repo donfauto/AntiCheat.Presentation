@@ -23,7 +23,6 @@ namespace AntiCheat.Presentation.Controllers
         }
         public async Task<IActionResult> Index()
         {
-
             try
             {
                 var tickets = await _ticketSaleService.GetTicketsSalesAsync();
@@ -62,9 +61,12 @@ namespace AntiCheat.Presentation.Controllers
 
 
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 4b5e1739a7dd3ca991b39b3d449dad7240699266
         [HttpPost]
         public async Task<IActionResult> SaveTicket(SaleViewModel saleViewModel)
         {
